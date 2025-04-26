@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakistan SIM Database | Ethical Hacking Tool by Shehzada Hasnain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff0033;
+            --primary-dark: #cc0029;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --light: #f0f0f0;
+            --gray: #333;
+            --gray-light: #444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--darker);
+            color: var(--light);
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 51, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 51, 0.1) 0%, transparent 20%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), #ff6699);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(255, 0, 51, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .description {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .search-box {
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid var(--gray);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .search-box:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(255, 0, 51, 0.3);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input {
+            background: var(--dark);
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            padding: 0.8rem 1rem;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(255, 0, 51, 0.2);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 0, 51, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 51, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .response-box {
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid var(--gray);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+            min-height: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .response-box:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(255, 0, 51, 0.3);
+        }
+
+        .formatted-data {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(20, 20, 20, 0.5);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .formatted-data:hover {
+            background: rgba(30, 30, 30, 0.7);
+            transform: translateX(5px);
+        }
+
+        .formatted-data p {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .formatted-data strong {
+            color: var(--primary);
+        }
+
+        .separator {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            margin: 1.5rem 0;
+            opacity: 0.3;
+        }
+
+        .error {
+            color: #ff6b6b;
+            text-align: center;
+            padding: 1rem;
+            font-weight: 500;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-card {
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid var(--gray);
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 280px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 0, 51, 0.3);
+        }
+
+        .social-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .social-card p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .social-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 51, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--gray);
+        }
+
+        .disclaimer {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 0, 51, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .disclaimer strong {
+            color: var(--primary);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 51, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 0, 51, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 51, 0);
+            }
+        }
+
+        .glow {
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+           
+            .logo {
+                font-size: 2rem;
+            }
+           
+            .search-box, .response-box {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1 class="logo">Pakistan SIM Database</h1>
+                <p class="tagline">Ethical Hacking Tool by Shehzada Hasnain</p>
+                <p class="description">
+                    The most advanced and reliable SIM information system in Pakistan. Our ethical hacking tool provides
+                    verified data while maintaining the highest standards of privacy and security. Use responsibly.
+                </p>
+            </div>
+        </header>
+
+        <div class="search-box">
+            <div class="input-group">
+                <label for="number">Enter Mobile Number</label>
+                <input type="text" id="number" placeholder="e.g. 03001234567" maxlength="11">
+            </div>
+            <button id="searchBtn" class="btn pulse">
+                <i class="fas fa-search"></i> Search Database
+            </button>
+        </div>
+
+        <div class="response-box" id="responseBox">
+            <div style="text-align: center; padding: 2rem;">
+                <i class="fas fa-mobile-alt" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <h3 style="color: var(--primary); margin-bottom: 0.5rem;">SIM Database Ready</h3>
+                <p style="color: #aaa;">Enter a mobile number to retrieve information</p>
+            </div>
+        </div>
+
+        <div class="disclaimer">
+            <strong>Important Notice:</strong> This tool is provided for ethical and legal purposes only.
+            Unauthorized access to personal information is strictly prohibited. By using this service,
+            you agree to comply with all applicable laws and regulations regarding data privacy in Pakistan.
+        </div>
+
+        <div class="social-links">
+            <div class="social-card">
+                <h3><i class="fab fa-whatsapp glow"></i> WhatsApp Group</h3>
+                <p>Join our ethical hacking community to learn more about cybersecurity and responsible data usage.</p>
+                <a href="#" class="social-btn">Join Group</a>
+            </div>
+            <div class="social-card">
+                <h3><i class="fab fa-telegram glow"></i> Telegram Channel</h3>
+                <p>Get updates on cybersecurity tips, tools, and ethical hacking techniques from our experts.</p>
+                <a href="#" class="social-btn">Join Channel</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2023 Pakistan SIM Database | Ethical Hacking Tool by Shehzada Hasnain</p>
+            <p style="margin-top: 0.5rem;">All rights reserved | Use responsibly</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('searchBtn').addEventListener('click', async function() {
+            const number = document.getElementById('number').value.trim();
+            const responseBox = document.getElementById('responseBox');
+           
+            if (!number || number.length !== 11 || isNaN(number)) {
+                responseBox.innerHTML = `<div class="error">❌ Please enter a valid 11-digit mobile number</div>`;
+                return;
+            }
+           
+            responseBox.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Searching Database</h3>
+                    <p style="color: #aaa;">Please wait while we retrieve information for ${number}</p>
+                </div>
+            `;
+           
+            const url = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://fam-official.serv00.net/sim/api.php?num=${number}`)}`;
+
+            try {
+                const response = await fetch(url);
+                const result = await response.json();
+                const apiData = JSON.parse(result.contents);
+
+                if (apiData.status === "success" && apiData.data.length > 0) {
+                    let formattedData = '';
+                   
+                    apiData.data.forEach(user => {
+                        formattedData += `
+                            <div class="formatted-data">
+                                <p><strong>🔹 Name:</strong> ${user.Name || "N/A"}</p>
+                                <p><strong>🔹 Mobile:</strong> ${user.Mobile || "N/A"}</p>
+                                <p><strong>🔹 CNIC:</strong> ${user.CNIC || "N/A"}</p>
+                                <p><strong>🔹 Operator:</strong> ${user.Operator || "N/A"}</p>
+                                <p><strong>🔹 Address:</strong> ${user.Address || "N/A"}</p>
+                            </div>
+                            <div class="separator"></div>
+                        `;
+                    });
+
+                    responseBox.innerHTML = formattedData;
+                } else {
+                    responseBox.innerHTML = `<div class="error">❌ No data found for this number</div>`;
+                }
+            } catch (error) {
+                responseBox.innerHTML = `<div class="error">❌ API Error: ${error.message}</div>`;
+            }
+        });
+    </script>
+</body>
+</html>
